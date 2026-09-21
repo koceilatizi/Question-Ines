@@ -1,3 +1,4 @@
+```css
 * {
   box-sizing: border-box;
 }
@@ -30,6 +31,7 @@ h1 {
 .buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 25px;
 }
 
@@ -39,7 +41,6 @@ button {
   font-size: 1.2rem;
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.15s;
 }
 
 #yes {
@@ -54,17 +55,11 @@ button {
 #no {
   background: #ddd;
   color: #333;
+}
 
+/* Une fois activé, le bouton peut se déplacer librement */
+#no.running {
   position: fixed;
-
-  transition:
-    left 0.15s ease,
-    top 0.15s ease;
+  transition: left 0.15s ease, top 0.15s ease;
 }
-
-#message {
-  margin-top: 40px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #ff477e;
-}
+```
