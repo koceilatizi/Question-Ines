@@ -1,33 +1,35 @@
+```javascript
 const yes = document.getElementById("yes");
 const no = document.getElementById("no");
 const message = document.getElementById("message");
 
 let attempts = 0;
 
-// Quand elle clique sur OUI
+// Bouton OUI
 yes.addEventListener("click", () => {
-  message.textContent = "🎉 Félicitations, merci !! ❤️";
-
-  yes.textContent = "OUI ❤️";
+  message.textContent = "🎉 Félicitations, merci je t'attends sur snap !! ❤️";
   no.style.display = "none";
 });
 
-// Le bouton NON fuit
+// Faire fuir le bouton NON
 function escapeButton() {
   attempts++;
+
+  // On passe le bouton en mode "fuite"
+  no.classList.add("running");
 
   const margin = 20;
 
   const maxX = window.innerWidth - no.offsetWidth - margin;
   const maxY = window.innerHeight - no.offsetHeight - margin;
 
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
+  const x = Math.random() * (maxX - margin) + margin;
+  const y = Math.random() * (maxY - margin) + margin;
 
-  no.style.left = `${Math.max(margin, x)}px`;
-  no.style.top = `${Math.max(margin, y)}px`;
+  no.style.left = `${x}px`;
+  no.style.top = `${y}px`;
 
-  // Le texte change au fur et à mesure
+  // Le texte change progressivement
   if (attempts === 3) {
     no.textContent = "T'es sûre ? 🤨";
   }
@@ -41,11 +43,12 @@ function escapeButton() {
   }
 }
 
-// Souris
+// Ordinateur
 no.addEventListener("mouseenter", escapeButton);
 
-// Mobile / tactile
+// Téléphone
 no.addEventListener("touchstart", (event) => {
   event.preventDefault();
   escapeButton();
 });
+```
